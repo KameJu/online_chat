@@ -1,13 +1,13 @@
 <template>
     <v-app class="app-main">
-        <v-app-bar app>
+        <v-app-bar class="header" app>
             <v-toolbar-title class="mr-1">Online Chat</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon href="/logout">
-                <v-icon>exit_to_app</v-icon>
-            </v-btn>
+<!--            <v-spacer></v-spacer>-->
+<!--            <v-btn icon href="/logout">-->
+<!--                <v-icon>exit_to_app</v-icon>-->
+<!--            </v-btn>-->
         </v-app-bar>
-        <v-main>
+        <v-main class="body">
             <router-view></router-view>
         </v-main>
     </v-app>
@@ -18,5 +18,13 @@
 </script>
 
 <style>
+.header{
+    background-color: #171717 !important;
+    -webkit-text-fill-color: #d7d7d7;
+}
 
+.body{
+    background-color: #151414;
+    -webkit-text-fill-color: #d7d7d7;
+}
 </style>
