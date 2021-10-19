@@ -13,11 +13,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .antMatcher("/**")
-                .authorizeRequests()
-                .antMatchers("/", "/login**", "/js/**", "/error**").permitAll()
-                .anyRequest().authenticated()
-                .and().logout().logoutSuccessUrl("/").permitAll()
-                .and()
+                    .authorizeRequests()
+                    .antMatchers("/", "/login**", "/register**", "/js/**", "/error**").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .logout()
+                    .logoutSuccessUrl("/").permitAll()
+                    .and()
                 .csrf().disable();
     }
 }
