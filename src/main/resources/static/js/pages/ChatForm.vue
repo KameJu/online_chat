@@ -20,6 +20,7 @@
         <v-row>
                 <v-btn class="mt-8" dark="dark" @click="start">Start chat</v-btn>
         </v-row>
+        <a href="/chat">websocket_chat</a>
     </v-container>
 </template>
 
@@ -32,7 +33,7 @@ export default {
         ListItem,
     },
     methods:{
-      async start(){
+        start(){
 
       }
     },

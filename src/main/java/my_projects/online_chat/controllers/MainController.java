@@ -18,4 +18,9 @@ public class MainController {
         model.addAttribute("isDevMode", true);
         return "index";
     }
+
+//    @GetMapping("/chat")
+//    public void chat(Model model) {
+//
+//    }
 }

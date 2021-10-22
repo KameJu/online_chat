@@ -1,17 +1,21 @@
 import SockJS from 'sockjs-client'
 import {Stomp} from '@stomp/stompjs'
 
-let stompClient= bull
+let stompClient= null
 const handlers = []
 
 export function connect() {
-    const socket = new SockJS('/gs-guide-websocket')
+    const socket = new SockJS('http://localhost:8081/socket')
     stompClient = Stomp.over(socket)
     stompClient.debug = () => {}
     stompClient.connect({}, frame => {
         // console.log('Connected: ' + frame)
-        stompClient.subscribe('/topic/chat', message => {
-            handlers.forEach(handler => handler(JSON.parse(message.body)))
+        stompClient.subscribe('/chat', message => {
+            console.log("subscribe")
+            if (message.body) {
+                console.log("messaged")
+                document.getElementById('chat').append("test message")
+            }
         })
     })
 }
@@ -28,5 +32,5 @@ export function disconnect() {
 }
 
 export function sendMessage(message) {
-    stompClient.send("/app/chat-websocket", {}, JSON.stringify(message))
+    stompClient.send("/app/send/message", {}, message)
 }
