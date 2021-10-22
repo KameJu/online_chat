@@ -27,4 +27,9 @@
     background-color: #151414;
     -webkit-text-fill-color: #d7d7d7;
 }
+.app-main{
+    overflow: scroll;
+    overflow-x: hidden; /* Hide vertical scrollbar */
+    overflow-y: hidden;
+}
 </style>

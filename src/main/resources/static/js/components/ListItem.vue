@@ -9,7 +9,6 @@
         <v-btn-toggle
             v-model="text"
             tile
-            color="deep-purple accent-3"
             group
             v-for="(item, i) in items"
             :key="i"
@@ -18,7 +17,6 @@
             <v-btn
                 dark="dark"
                 elevation="3"
-                active-class="my-btn"
                 :value="item.text">
                 {{item.text}}
             </v-btn>
@@ -40,6 +38,12 @@ export default {
 </script>
 
 <style scoped>
+
+.v-btn-toggle--group>.v-btn.v-btn {
+    background-color: transparent !important;
+    margin: 4px;
+    min-width: auto;
+}
 
 .v-btn:before{
     background-color: #651FFF;

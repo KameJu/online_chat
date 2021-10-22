@@ -1,19 +1,24 @@
 <template>
-    <v-container class="mt-12">
-        <v-row align="center mt-5">
+    <v-container>
+        <v-row align="center mt-8">
 
-            <ListItem class="mb-auto p-2 bd-highlight" item-name="Your sex:" :items="[ {text: 'male'},  {text: 'female'},  ]"></ListItem>
+            <ListItem item-name="Your sex:" id="yourSex" class="mb-auto p-2 bd-highlight"
+                      :items="[ {text: 'male'},  {text: 'female'},  ]"></ListItem>
 
-            <ListItem item-name="Opponent sex:" :items="sexes"></ListItem>
+            <ListItem item-name="Opponent sex:" id="opponentSex" :items="sexes"></ListItem>
 
         </v-row>
 
         <v-row align="center mt-5">
 
-            <list-item item-name="Your age:" :items="ages"></list-item>
+            <list-item item-name="Your age:" id="yourAge" :items="ages"></list-item>
 
-            <list-item item-name="opponent age:" :items="ages"></list-item>
+            <list-item item-name="Opponent age:" id="opponentAge" :items="ages"></list-item>
 
+        </v-row>
+
+        <v-row>
+                <v-btn class="mt-8" dark="dark" @click="start">Start chat</v-btn>
         </v-row>
     </v-container>
 </template>
@@ -25,6 +30,11 @@ export default {
     name: "ChatForm",
     components: {
         ListItem,
+    },
+    methods:{
+      async start(){
+
+      }
     },
     data() {
         return {
@@ -49,4 +59,20 @@ export default {
 
 <style scoped>
 
+.v-btn {
+    margin: 0px auto;
+    width: 50%;
+    background-color: transparent !important;
+    border-radius: 0px;
+    -webkit-text-fill-color: yellowgreen;
+    border: 2px solid yellowgreen;
+}
+
+.v-btn:before{
+    background-color: #151414;
+}
+
+.theme--dark.v-btn {
+     color: yellowgreen;
+}
 </style>

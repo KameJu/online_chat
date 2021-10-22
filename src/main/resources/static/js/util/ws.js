@@ -10,7 +10,7 @@ export function connect() {
     stompClient.debug = () => {}
     stompClient.connect({}, frame => {
         // console.log('Connected: ' + frame)
-        stompClient.subscribe('/topic/activity', message => {
+        stompClient.subscribe('/topic/chat', message => {
             handlers.forEach(handler => handler(JSON.parse(message.body)))
         })
     })
@@ -28,5 +28,5 @@ export function disconnect() {
 }
 
 export function sendMessage(message) {
-    stompClient.send("/app/changeMessage", {}, JSON.stringify(message))
+    stompClient.send("/app/chat-websocket", {}, JSON.stringify(message))
 }
