@@ -15,6 +15,6 @@ public class ChatService {
     }
 
     public void sendMessage(String message) {
-        messagingTemplate.convertAndSend("/chat", message);
+        messagingTemplate.convertAndSend("/chat/socket", message);
     }
 }

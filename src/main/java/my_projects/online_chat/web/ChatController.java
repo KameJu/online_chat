@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Locale;
+
 @RestController
 public class ChatController {
 
@@ -15,8 +17,8 @@ public class ChatController {
         this.chatService = chatService;
     }
 
-    @MessageMapping("/send/message")
-    public void sendMessage(String message) {
-        this.chatService.sendMessage(message);
+    @MessageMapping("/chat")
+    public String sendMessage(String message) {
+        return message;
     }
 }

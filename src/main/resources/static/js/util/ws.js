@@ -4,18 +4,25 @@ import {Stomp} from '@stomp/stompjs'
 let stompClient= null
 const handlers = []
 
+let counter = 0;
+
 export function connect() {
-    const socket = new SockJS('http://localhost:8081/socket')
+    const socket = new SockJS('/chat')
+
     stompClient = Stomp.over(socket)
-    stompClient.debug = () => {}
+    // stompClient.debug = () => {}
+
     stompClient.connect({}, frame => {
-        // console.log('Connected: ' + frame)
-        stompClient.subscribe('/chat', message => {
+        console.log('Connected: ' + frame)
+
+
+        stompClient.subscribe('/topic/chat', (message) => {
             console.log("subscribe")
-            if (message.body) {
-                console.log("messaged")
-                document.getElementById('chat').append("test message")
-            }
+
+            // handlers.forEach(handler => handler(JSON.parse("test message")))
+            //     console.log("messaged")
+            document.getElementById('chat').append(message.body)
+
         })
     })
 }
@@ -31,6 +38,7 @@ export function disconnect() {
     console.log("Disconnected")
 }
 
-export function sendMessage(message) {
-    stompClient.send("/app/send/message", {}, message)
+export function sendMessage() {
+    stompClient.send("/app/chat", {}, counter++)
 }
+
