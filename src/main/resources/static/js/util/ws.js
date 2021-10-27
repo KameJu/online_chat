@@ -13,15 +13,11 @@ export function connect() {
     // stompClient.debug = () => {}
 
     stompClient.connect({}, frame => {
-        console.log('Connected: ' + frame)
-
 
         stompClient.subscribe('/topic/chat', (message) => {
-            console.log("subscribe")
-
             // handlers.forEach(handler => handler(JSON.parse("test message")))
             //     console.log("messaged")
-            document.getElementById('chat').append(message.body)
+            document.getElementById('chat').append(JSON.parse(message.body))
 
         })
     })

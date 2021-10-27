@@ -8,7 +8,6 @@
 <script>
 import {connect, sendMessage} from "../util/ws";
 
-connect()
 
 export default {
     name: "ChatRoom",
@@ -16,6 +15,9 @@ export default {
         send() {
             sendMessage()
         }
+    },
+    created(){
+        connect()
     }
 }
 </script>
