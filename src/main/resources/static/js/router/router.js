@@ -6,10 +6,10 @@ import ChatRoom from "pages/ChatRoom.vue";
 Vue.use(VueRouter)
 
 const routes = [
-    {path: '/', component: ChatRoom},
+    // {path: '/', component: ChatRoom},
 
-    // {path: '/', component: ChatForm},
-    // {path: '/chat', component: ChatRoom},
+    {path: '/', component: ChatForm},
+    {path: '/chat', component: ChatRoom},
 
 ];
 

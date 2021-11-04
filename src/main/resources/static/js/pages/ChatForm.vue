@@ -1,19 +1,19 @@
 <template>
     <v-container>
-        <v-row align="center mt-8">
+        <v-row class="mt-8">
 
-            <ListItem item-name="Your sex:" id="yourSex" class="mb-auto p-2 bd-highlight"
-                      :items="[ {text: 'male'},  {text: 'female'},  ]"></ListItem>
+          <list-item ref="mySex" item-name="Your sex:" class="mb-auto p-2 bd-highlight"
+                     :items="[ {text: 'male'},  {text: 'female'},  ]"></list-item>
 
-            <ListItem item-name="Opponent sex:" id="opponentSex" :items="sexes"></ListItem>
+          <list-item ref="opSex" item-name="Opponent sex:"  :items="sexes"></list-item>
 
         </v-row>
 
-        <v-row align="center mt-5">
+        <v-row class="mt-5">
 
-            <list-item item-name="Your age:" id="yourAge" :items="ages"></list-item>
+            <list-item ref="myAge" item-name="Your age:" :items="ages"></list-item>
 
-            <list-item item-name="Opponent age:" id="opponentAge" :items="ages"></list-item>
+            <list-item ref="opAge" item-name="Opponent age:" id="opponentAge" :items="ages"></list-item>
 
         </v-row>
 
@@ -21,7 +21,11 @@
                 <v-btn class="mt-8" dark="dark" @click="start">Start chat</v-btn>
         </v-row>
         <a href="/chat">websocket_chat</a>
+      <div>
+      </div>
     </v-container>
+
+
 </template>
 
 <script>
@@ -33,27 +37,59 @@ export default {
         ListItem,
     },
     methods:{
-        start(){
+      start(){
 
-      }
+
+          // const requestOptions = {
+          //   method: "POST",
+          //   headers: { "Content-Type": "application/json" },
+          //   body: JSON.stringify({
+          //     mySex: this.$refs.mySex.$data.text,
+          //     opSex: this.$refs.opSex.$data.text,
+          //     myAge: this.$refs.myAge.$data.text,
+          //     opAge: this.$refs.opAge.$data.text,
+          //   })
+          // }
+
+          const joinRequest = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "User-Data": JSON.stringify({
+                mySex: this.$refs.mySex.$data.text,
+                opSex: this.$refs.opSex.$data.text,
+                myAge: this.$refs.myAge.$data.text,
+                opAge: this.$refs.opAge.$data.text,
+              })
+            }
+          }
+
+        // fetch("/join.data", requestOptions)
+        fetch("/join", joinRequest)
+
+            // .then(response => response.json())
+            // .then(data => ({text: "some text"}));
+
+      },
     },
     data() {
-        return {
-            toggle_exclusive: 1,
-            sexes: [
-                {text: "Male"},
-                {text: "Female"},
-                {text: "Somebody"},
-            ],
-            ages:[
-                {text: "Under 17"},
-                {text: "From 18 to 21"},
-                {text: "From 22 to 25"},
-                {text: "From 26 to 35"},
-                {text: "Older then 36"},
-            ]
-
-        }
+      return {
+        sex: "",
+        toggle_exclusive: 1,
+        sexes: [
+          {text: "Male"},
+          {text: "Female"},
+          {text: "Somebody"},
+        ],
+        ages: [
+          {text: "Under 17"},
+          {text: "From 18 to 21"},
+          {text: "From 22 to 25"},
+          {text: "From 26 to 35"},
+          {text: "Older then 36"},
+        ],
+        outputData: {},
+      }
     },
 }
 </script>

@@ -92,4 +92,8 @@ public class ChatService {
     private String getDestination(String chatRoomId) {
         return "/topic/chat" + chatRoomId;
     }
+
+    public void connectUser(String chatRoomId, String sessionId) {
+
+    }
 }

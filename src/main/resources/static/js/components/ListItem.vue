@@ -7,7 +7,7 @@
         <strong class="d-flex flex-start">{{itemName}}</strong>
 
         <v-btn-toggle
-            v-model="text"
+            v-model.lazy="text"
             tile
             group
             v-for="(item, i) in items"
@@ -21,7 +21,6 @@
                 {{item.text}}
             </v-btn>
         </v-btn-toggle>
-<!--        {{text}}-->
     </v-col>
 </template>
 
@@ -33,7 +32,8 @@ export default {
         return{
             text: {}
         }
-    }
+    },
+
 }
 </script>
 

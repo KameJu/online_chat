@@ -7,14 +7,14 @@ const handlers = []
 let counter = 0;
 
 export function connect() {
-    const socket = new SockJS('/chat')
+    const socket = new SockJS('/chat-websocket')
 
     stompClient = Stomp.over(socket)
     // stompClient.debug = () => {}
 
-    stompClient.connect({}, frame => {
+    stompClient.connect({chatRoomId: "1"}, frame => {
 
-        stompClient.subscribe('/topic/chat', (message) => {
+        stompClient.subscribe('/topic/chat/1', (message) => {
             // handlers.forEach(handler => handler(JSON.parse("test message")))
             //     console.log("messaged")
             document.getElementById('chat').append(JSON.parse(message.body))
@@ -35,6 +35,6 @@ export function disconnect() {
 }
 
 export function sendMessage() {
-    stompClient.send("/app/chat", {}, counter++)
+    stompClient.send("/app/chat.message/1", {}, counter++)
 }
 
